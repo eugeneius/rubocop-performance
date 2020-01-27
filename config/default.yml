@@ -110,12 +110,23 @@ Performance/FlatMap:
   # This can be dangerous since `flat_map` will only flatten 1 level, and
   # `flatten` without any parameters can flatten multiple levels.
 
+Performance/HashTransformation:
+  Description: 'Use `Hash#to_h` instead of `Hash#map...to_h` or `Hash[Hash#map]`.'
+  Enabled: true
+  VersionAdded: '1.6'
+
 Performance/InefficientHashSearch:
   Description: 'Use `key?` or `value?` instead of `keys.include?` or `values.include?`'
   Reference: 'https://github.com/JuanitoFatas/fast-ruby#hashkey-instead-of-hashkeysinclude-code'
   Enabled: true
   VersionAdded: '0.56'
   Safe: false
+
+Performance/KeyTransformation:
+  Description: 'Use `Hash#transform_keys` instead of `Hash#map...to_h`, `Hash[Hash#map]`, or `Hash#to_h`.'
+  Enabled: true
+  Safe: false
+  VersionAdded: '1.6'
 
 Performance/OpenStruct:
   Description: 'Use `Struct` instead of `OpenStruct`.'
@@ -211,3 +222,9 @@ Performance/UriDefaultParser:
   Description: 'Use `URI::DEFAULT_PARSER` instead of `URI::Parser.new`.'
   Enabled: true
   VersionAdded: '0.50'
+
+Performance/ValueTransformation:
+  Description: 'Use `Hash#transform_values` instead of `Hash#map...to_h`, `Hash[Hash#map]`, or `Hash#to_h`.'
+  Enabled: true
+  Safe: false
+  VersionAdded: '1.6'

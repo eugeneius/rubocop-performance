@@ -5,6 +5,7 @@
 ### New features
 
 * [#77](https://github.com/rubocop-hq/rubocop-performance/issues/77): Add new `Performance/BindCall` cop. ([@koic][])
+* [#99](https://github.com/rubocop-hq/rubocop-performance/pull/99): Add new `Performance/HashTransformation`, `Performance/KeyTransformation`, and `Performance/ValueTransformation` cops. ([@eugeneius][])
 
 ## 1.5.2 (2019-12-25)
 

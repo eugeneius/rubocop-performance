@@ -13,7 +13,9 @@
 * [Performance/EndWith](cops_performance.md#performanceendwith)
 * [Performance/FixedSize](cops_performance.md#performancefixedsize)
 * [Performance/FlatMap](cops_performance.md#performanceflatmap)
+* [Performance/HashTransformation](cops_performance.md#performancehashtransformation)
 * [Performance/InefficientHashSearch](cops_performance.md#performanceinefficienthashsearch)
+* [Performance/KeyTransformation](cops_performance.md#performancekeytransformation)
 * [Performance/OpenStruct](cops_performance.md#performanceopenstruct)
 * [Performance/RangeInclude](cops_performance.md#performancerangeinclude)
 * [Performance/RedundantBlockCall](cops_performance.md#performanceredundantblockcall)
@@ -27,5 +29,6 @@
 * [Performance/TimesMap](cops_performance.md#performancetimesmap)
 * [Performance/UnfreezeString](cops_performance.md#performanceunfreezestring)
 * [Performance/UriDefaultParser](cops_performance.md#performanceuridefaultparser)
+* [Performance/ValueTransformation](cops_performance.md#performancevaluetransformation)
 
 <!-- END_COP_LIST -->

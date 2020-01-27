@@ -428,6 +428,27 @@ EnabledForFlattenWithoutParams | `false` | Boolean
 
 * [https://github.com/JuanitoFatas/fast-ruby#enumerablemaparrayflatten-vs-enumerableflat_map-code](https://github.com/JuanitoFatas/fast-ruby#enumerablemaparrayflatten-vs-enumerableflat_map-code)
 
+## Performance/HashTransformation
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | Yes | Yes  | 1.6 | -
+
+This cop identifies places where `map { ... }.to_h` or
+`Hash[map { ... }]` can be replaced with `to_h { ... }`,
+saving an intermediate array allocation.
+
+### Examples
+
+```ruby
+# bad
+hash.collect { |k, v| [v, k] }.to_h
+Hash[hash.map { |k, v| [v, k] }]
+
+# good
+hash.to_h { |k, v| [v, k] }
+```
+
 ## Performance/InefficientHashSearch
 
 Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
@@ -473,6 +494,28 @@ h = { a: 1, b: 2 }; h.value?(nil)
 ### References
 
 * [https://github.com/JuanitoFatas/fast-ruby#hashkey-instead-of-hashkeysinclude-code](https://github.com/JuanitoFatas/fast-ruby#hashkey-instead-of-hashkeysinclude-code)
+
+## Performance/KeyTransformation
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | No | Yes  | 1.6 | -
+
+This cop identifies places where `map { ... }.to_h`, `Hash[map { ... }]`
+or `to_h { ... }` can be replaced with `transform_keys { ... }`,
+saving an array allocation on each iteration.
+
+### Examples
+
+```ruby
+# bad
+hash.collect { |k, v| [k.to_s, v] }.to_h
+Hash[hash.map { |k, v| [k.to_s, v] }]
+hash.to_h { |k, v| [k.to_s, v] }
+
+# good
+hash.transform_keys { |k| k.to_s }
+```
 
 ## Performance/OpenStruct
 
@@ -906,4 +949,26 @@ URI::Parser.new
 
 # good
 URI::DEFAULT_PARSER
+```
+
+## Performance/ValueTransformation
+
+Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+--- | --- | --- | --- | ---
+Enabled | No | Yes  | 1.6 | -
+
+This cop identifies places where `map { ... }.to_h`, `Hash[map { ... }]`
+or `to_h { ... }` can be replaced with `transform_values { ... }`,
+saving an array allocation on each iteration.
+
+### Examples
+
+```ruby
+# bad
+hash.collect { |k, v| [k, v.to_s] }.to_h
+Hash[hash.map { |k, v| [k, v.to_s] }]
+hash.to_h { |k, v| [k, v.to_s] }
+
+# good
+hash.transform_values { |v| v.to_s }
 ```
